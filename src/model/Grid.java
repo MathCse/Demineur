@@ -17,7 +17,14 @@ public class Grid {
         this.j = j;
         plate = new Cell[i][j];
         this.percent = percent;
+        setMines(this.percent);
         System.out.println("Nouvelle grille de démineur de " + i + " x " + j + " avec " + percent + "% de mines.");
+    }
+    
+    public void setMines(int percent){
+        int surface = this.i * this.j;
+        int nbMines = surface * this.percent / 100;
+        
     }
 
     public int getPercent() {
