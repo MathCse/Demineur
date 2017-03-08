@@ -51,7 +51,7 @@ public class Demineur {
         
         Grid grid = new Grid(line, row, per);
         
-        grid.print();
+        grid.printInit();
     }
     
 }
