@@ -44,14 +44,15 @@ public class Demineur {
         per = sc.nextInt();
         if(per < 0 || per > 100){
             do{
-                System.out.println("Le nombre doit être entre 0 et 100 ! Veuillez saisir le pourcentage de mines sur la grille:");
+                System.out.println("Le nombre doit être entre 1 % et 85 % ! Veuillez saisir le pourcentage de mines sur la grille:");
                 per = sc.nextInt();
-            } while(per < 0 || per > 100);
+            } while(per < 1 || per > 85);
         }
         
         Grid grid = new Grid(line, row, per);
         
-        grid.printInit();
+        //grid.printInit();
+        grid.printDebug();
     }
     
 }
