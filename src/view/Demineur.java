@@ -8,6 +8,7 @@ package view;
 import java.lang.System;
 import java.util.Scanner;
 
+import controller.Init;
 import model.Grid;
 
 /**
@@ -17,39 +18,8 @@ import model.Grid;
 public class Demineur {
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int row;
-        int line;
-        int per;
-        
-        System.out.println("Veuillez saisir le nombre de colonnes:");
-        row = sc.nextInt();
-        if(row < 0){
-            do{
-                System.out.println("Le nombre doit être positif ! Veuillez saisir le nombre de rowonnes:");
-                row = sc.nextInt();
-            } while(row < 0);
-        }
-        
-        System.out.println("Veuillez saisir le nombre de lignes:");
-        line = sc.nextInt();
-        if(line < 0){
-            do{
-                System.out.println("Le nombre doit être positif ! Veuillez saisir le nombre de lignes:");
-                line = sc.nextInt();
-            } while(line < 0);
-        }
-        
-        System.out.println("Veuillez saisir le pourcentage de mines sur la grille:");
-        per = sc.nextInt();
-        if(per < 0 || per > 100){
-            do{
-                System.out.println("Le nombre doit être entre 1 % et 85 % ! Veuillez saisir le pourcentage de mines sur la grille:");
-                per = sc.nextInt();
-            } while(per < 1 || per > 85);
-        }
-        
-        Grid grid = new Grid(line, row, per);
+        Init initialisation = new Init(); 
+        Grid grid = new Grid(initialisation.getLine(), initialisation.getRow(), initialisation.getPercent());
         
         //grid.printInit();
         grid.printDebug();

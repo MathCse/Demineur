@@ -6,12 +6,16 @@ package model;
  */
 
 public class Cell {
-    public boolean masked;
-    public PossibleCell content;
+    private boolean masked;
+    private PossibleCell content;
+    private int nbNeighboors;
+    private Marks mark;
     
     public Cell(){
-        masked = true;
-        content = PossibleCell.EMPTY;
+        this.masked = true;
+        this.content = PossibleCell.EMPTY;
+        this.nbNeighboors = 0;
+        this.mark = Marks.NOT_MARKED;
     }
 
     public boolean isMasked() {
@@ -29,6 +33,20 @@ public class Cell {
     public void setContent(PossibleCell content) {
         this.content = content;
     }
-    
-    
+
+    public int getNbNeighboors() {
+        return nbNeighboors;
+    }
+
+    public void setNbNeighboors(int nbNeighboors) {
+        this.nbNeighboors = nbNeighboors;
+    }
+
+    public Marks getMark() {
+        return mark;
+    }
+
+    public void setMark(Marks mark) {
+        this.mark = mark;
+    }
 }
