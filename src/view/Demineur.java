@@ -18,7 +18,7 @@ public class Demineur {
         
         do{
             newGame.round();
-        } while (!newGame.isLost() || !newGame.isSuccessful() || newGame.isQuit());
+        } while (!newGame.isLost() && !newGame.isSuccessful() || newGame.isQuit());
     }
     
 }
