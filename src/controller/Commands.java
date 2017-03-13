@@ -42,7 +42,7 @@ public class Commands {
                 switch (action) {
 
                     case 'd':
-                        if (game.getGrid().getPlate()[i][j].getNbNeighboors() == 0) {
+                        if (game.getGrid().getPlate()[i][j].getNbNeighboors() == 0 && game.getGrid().getPlate()[i][j].getContent()== PossibleCell.EMPTY) {
                             this.unmaskNeighboors(game.getGrid().getPlate(), i, j, game.getGrid().getI(), game.getGrid().getJ());
                         } else {
                             game.getGrid().getPlate()[i][j].setMasked(false);
