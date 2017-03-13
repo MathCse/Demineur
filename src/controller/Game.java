@@ -70,8 +70,26 @@ public class Game {
         return grid;
     }
     
-    public void round(){
+      public void round() {
+        System.out.println("Enter an action :");
         String str = sc.nextLine();
+        String[] parts = str.split(" ");
+        char part1 = parts[0].charAt(0);
+        int part2 = 0;
+        int part3 = 0;
+        char part4 = ' ';
+        if (parts.length > 1) {
+            part2 = Integer.parseInt(parts[1]);
+            part3 = Integer.parseInt(parts[2]);
+        }
         
+        if (parts.length > 3) {
+            part4 = parts[3].charAt(0);
+        }
+
+        Commands command = new Commands(part1, part2, part3, part4);
+        command.DoAction(this);
+        //grid.print();
+        grid.printDebug();
     }
 }

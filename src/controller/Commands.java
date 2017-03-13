@@ -43,7 +43,8 @@ public class Commands {
 
                     case 'd':
                         if(game.getGrid().getPlate()[i][j].getNbNeighboors() == 0){
-                            this.unmaskNeighboors(game.getGrid().getPlate(), i, j, game.getGrid().getI(), game.getGrid().getJ());
+                            //this.unmaskNeighboors(game.getGrid().getPlate(), i, j, game.getGrid().getI(), game.getGrid().getJ());
+                            game.getGrid().getPlate()[i][j].setMasked(false);
                         } else {
                             game.getGrid().getPlate()[i][j].setMasked(false);
                         }
