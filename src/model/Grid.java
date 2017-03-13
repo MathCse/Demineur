@@ -46,6 +46,11 @@ public class Grid {
         return percent;
     }
 
+    public Cell[][] getPlate() {
+        return plate;
+    }
+    
+
     public void setPercent(int percent) {
         this.percent = percent;
     }
