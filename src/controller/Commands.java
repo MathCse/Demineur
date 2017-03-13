@@ -43,8 +43,7 @@ public class Commands {
 
                     case 'd':
                         if(game.getGrid().getPlate()[i][j].getNbNeighboors() == 0){
-                            //this.unmaskNeighboors(game.getGrid().getPlate(), i, j, game.getGrid().getI(), game.getGrid().getJ());
-                            game.getGrid().getPlate()[i][j].setMasked(false);
+                            this.unmaskNeighboors(game.getGrid().getPlate(), i, j, game.getGrid().getI(), game.getGrid().getJ());
                         } else {
                             game.getGrid().getPlate()[i][j].setMasked(false);
                         }
@@ -108,7 +107,7 @@ public class Commands {
     }
 
     public void unmaskNeighboors(Cell[][] plate, int i, int j, int maxi, int maxj){
-        if(i-1 >= 0){
+        /*if(i-1 >= 0){
             if(plate[i-1][j].getNbNeighboors() == 0){
                 unmaskNeighboors(plate, i-1, j, maxi, maxj);
             }
@@ -147,7 +146,7 @@ public class Commands {
             if(plate[i][j+1].getNbNeighboors() == 0){
                 unmaskNeighboors(plate, i, j+1, maxi, maxj);
             }
-        }
+        }*/
         
         plate[i][j].setMasked(false);
     }
