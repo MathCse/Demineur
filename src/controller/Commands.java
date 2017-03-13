@@ -5,8 +5,7 @@
  */
 package controller;
 
-import model.Grid;
-import model.Marks;
+import model.*;
 
 /**
  *
@@ -44,7 +43,7 @@ public class Commands {
 
                     case 'd':
                         if(game.getGrid().getPlate()[i][j].getNbNeighboors() == 0){
-                            game.getGrid().getPlate()[i][j].setMasked(false);
+                            this.unmaskNeighboors(game.getGrid().getPlate(), i, j, game.getGrid().getI(), game.getGrid().getJ());
                         } else {
                             game.getGrid().getPlate()[i][j].setMasked(false);
                         }
@@ -107,7 +106,48 @@ public class Commands {
         this.argument = argument;
     }
 
-    public void unmaskNeighboors(){
+    public void unmaskNeighboors(Cell[][] plate, int i, int j, int maxi, int maxj){
+        if(i-1 >= 0){
+            if(plate[i-1][j].getNbNeighboors() == 0){
+                unmaskNeighboors(plate, i-1, j, maxi, maxj);
+            }
+            if(j-1 >= 0){
+                if(plate[i-1][j-1].getNbNeighboors() == 0){
+                    unmaskNeighboors(plate, i-1, j-1, maxi, maxj);
+                }
+            }
+            if(j+1 <= maxj-1){
+                if(plate[i-1][j+1].getNbNeighboors() == 0){
+                    unmaskNeighboors(plate, i-1, j+1, maxi, maxj);
+                }
+            }
+        }
+        if(j-1 >= 0){
+            if(plate[i][j-1].getNbNeighboors() == 0){
+                unmaskNeighboors(plate, i, j-1, maxi, maxj);
+            }
+        }
+        if(i+1 <= maxi-1){
+            if(plate[i+1][j].getNbNeighboors() == 0){
+                unmaskNeighboors(plate, i+1, j, maxi, maxj);
+            }
+            if(j-1 >= 0){
+                if(plate[i+1][j-1].getNbNeighboors() == 0){
+                    unmaskNeighboors(plate, i+1, j-1, maxi, maxj);
+                }
+            }
+            if(j+1 <= maxj-1){
+                if(plate[i+1][j+1].getNbNeighboors() == 0){
+                    unmaskNeighboors(plate, i+1, j+1, maxi, maxj);
+                }
+            }
+        }
+        if(j+1 <= maxj-1){
+            if(plate[i][j+1].getNbNeighboors() == 0){
+                unmaskNeighboors(plate, i, j+1, maxi, maxj);
+            }
+        }
         
+        plate[i][j].setMasked(false);
     }
 }

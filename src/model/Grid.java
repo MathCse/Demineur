@@ -28,6 +28,14 @@ public class Grid {
             }
         }
     }
+
+    public int getI() {
+        return i;
+    }
+
+    public int getJ() {
+        return j;
+    }
     
     public void setMines(int percent){
         int surface = this.i * this.j;
