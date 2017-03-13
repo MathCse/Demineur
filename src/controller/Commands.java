@@ -6,6 +6,7 @@
 package controller;
 
 import model.Grid;
+import model.Marks;
 
 /**
  *
@@ -49,15 +50,15 @@ public class Commands {
                         switch (argument) {
                             // On marque la case
                             case 'x':
-
+                                grid.getPlate()[i][j].setMark(Marks.MARKED_MINE);
                                 break;
 
                             case '?':
-
+                                grid.getPlate()[i][j].setMark(Marks.MARKED_UNKNOWN);
                                 break;
 
                             case '#':
-
+                                grid.getPlate()[i][j].setMark(Marks.NOT_MARKED);
                                 break;
 
                         }
@@ -65,6 +66,7 @@ public class Commands {
 
                     case 'q':
                         // On quitte le jeu
+                        
                         break;
 
                 }
