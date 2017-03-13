@@ -10,19 +10,30 @@ public class Init {
     
     public Init() {
         Scanner sc = new Scanner(System.in);
+        
         System.out.println("Enter number of row : ");
-        try {
-            if(row > 0) {
-                row = sc.nextInt();
-                setRow(row);
-            }
-            else {
-                throw new Exception("row must be > 0");
-            }
+        row = sc.nextInt();
+        while(row <= 0) {
+            System.out.println("Number of row must be > 0, please enter a new number of row :");
+            row = sc.nextInt();
         }
-        catch (Exception e) {
-            System.out.println("Error : " + e);
+        setRow(row);
+        
+        System.out.println("Enter number of line : ");
+        line = sc.nextInt();
+        while(line <= 0) {
+            System.out.println("Number of line must be > 0, please enter a new number of line :");
+            line = sc.nextInt();
         }
+        setLine(line);
+        
+        System.out.println("Enter percentage of mine : ");
+        percent = sc.nextInt();
+        while(percent  > 85 || percent < 1) {
+            System.out.println("Percentage of mine must be > 1 and < 85, please enter a new percentage of mine :");
+            percent = sc.nextInt();
+        }
+        setPercent(percent);
     }
 
     public int getRow() {
