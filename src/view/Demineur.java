@@ -5,11 +5,7 @@
  */
 package view;
 
-import java.lang.System;
-import java.util.Scanner;
-
-import controller.Init;
-import model.Grid;
+import controller.Game;
 
 /**
  *
@@ -18,11 +14,11 @@ import model.Grid;
 public class Demineur {
 
     public static void main(String[] args) {
-        Init initialisation = new Init(); 
-        Grid grid = new Grid(initialisation.getLine(), initialisation.getRow(), initialisation.getPercent());
+        Game newGame = new Game();
         
-        //grid.printInit();
-        grid.printDebug();
+        do{
+            newGame.round();
+        } while (!newGame.isLost() || !newGame.isSuccessful());
     }
     
 }
