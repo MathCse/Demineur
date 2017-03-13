@@ -33,40 +33,43 @@ public class Commands {
         return action;
     }
 
-    public void DoAction(Grid grid) {
+    public void DoAction(Game game) {
         try {
             if (i < 0 || j < 0) {
                 throw new Exception("Les coordonnées doivent être positives");
-            } else if (i > grid.getPlate().length - 1 || j > grid.getPlate()[0].length - 1) {
+            } else if (i > game.getGrid().getPlate().length - 1 || j > game.getGrid().getPlate()[0].length - 1) {
                 throw new Exception("Les coordonnées doivent être inférieur à la taille max du plateau");
             } else {
                 switch (action) {
 
                     case 'd':
-                        grid.getPlate()[i][j].setMasked(false);
+                        if(game.getGrid().getPlate()[i][j].getNbNeighboors() == 0){
+                            game.getGrid().getPlate()[i][j].setMasked(false);
+                        } else {
+                            game.getGrid().getPlate()[i][j].setMasked(false);
+                        }
                         break;
 
                     case 'm':
                         switch (argument) {
                             // On marque la case
                             case 'x':
-                                grid.getPlate()[i][j].setMark(Marks.MARKED_MINE);
+                                game.getGrid().getPlate()[i][j].setMark(Marks.MARKED_MINE);
                                 break;
 
                             case '?':
-                                grid.getPlate()[i][j].setMark(Marks.MARKED_UNKNOWN);
+                                game.getGrid().getPlate()[i][j].setMark(Marks.MARKED_UNKNOWN);
                                 break;
 
                             case '#':
-                                grid.getPlate()[i][j].setMark(Marks.NOT_MARKED);
+                                game.getGrid().getPlate()[i][j].setMark(Marks.NOT_MARKED);
                                 break;
 
                         }
                         break;
 
                     case 'q':
-                        // On quitte le jeu
-                        
+                        game.setQuit(true);
                         break;
 
                 }
@@ -104,4 +107,7 @@ public class Commands {
         this.argument = argument;
     }
 
+    public void unmaskNeighboors(){
+        
+    }
 }

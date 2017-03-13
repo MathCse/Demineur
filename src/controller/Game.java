@@ -12,7 +12,7 @@ public class Game {
     private final Init initialisation;
     private final Grid grid;
     private final Scanner sc;
-    
+    private boolean quit = false;
     
     public Game(){
         this.initialisation = new Init();
@@ -56,6 +56,18 @@ public class Game {
         }
         
         return lost;
+    }
+
+    public boolean isQuit() {
+        return quit;
+    }
+
+    public void setQuit(boolean quit) {
+        this.quit = quit;
+    }
+
+    public Grid getGrid() {
+        return grid;
     }
     
     public void round(){
