@@ -18,8 +18,8 @@ public class Game {
         this.initialisation = new Init();
         this.grid = new Grid(initialisation.getLine(), initialisation.getRow(), initialisation.getPercent());
         sc = new Scanner(System.in);
-        this.grid.print();
-        //this.grid.printDebug();
+        //this.grid.print();
+        this.grid.printDebug();
     }
     
     public boolean isSuccessful(){
