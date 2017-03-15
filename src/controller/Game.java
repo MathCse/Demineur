@@ -87,7 +87,7 @@ public class Game {
             part4 = parts[3].charAt(0);
         }
 
-        Commands command = new Commands(part1, part2, part3, part4);
+        Commands command = new Commands(part1, part3, part2, part4);
         command.DoAction(this);
         grid.print();
         //grid.printDebug();
