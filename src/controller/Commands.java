@@ -108,53 +108,54 @@ public class Commands {
 
     public void unmaskNeighboors(Cell[][] plate, int i, int j, int maxi, int maxj) {
         plate[i][j].setMasked(false);
-        if (i - 1 >= 0) {
-            if (plate[i][j].getNbNeighboors() == 0 && plate[i - 1][j].isMasked() == true) {
+        if (plate[i][j].getNbNeighboors() == 0) {
+            if (i - 1 >= 0) {
 
-                if (i - 1 >= 0) {
-                    if (plate[i - 1][j].getNbNeighboors() == 0) {
+                //if (i - 1 >= 0) {
+                if (plate[i - 1][j].getContent() != PossibleCell.MINE && plate[i - 1][j].isMasked() == true) {
 
-                        unmaskNeighboors(plate, i - 1, j, maxi, maxj);
-                    }
-                    if (j - 1 >= 0) {
-                        if (plate[i][j].getNbNeighboors() == 0 && plate[i - 1][j - 1].isMasked() == true) {
-                            unmaskNeighboors(plate, i - 1, j - 1, maxi, maxj);
-                        }
-                    }
-                    if (j + 1 <= maxj - 1) {
-                        if (plate[i][j].getNbNeighboors() == 0 && plate[i - 1][j + 1].isMasked() == true) {
-                            unmaskNeighboors(plate, i - 1, j + 1, maxi, maxj);
-                        }
-                    }
+                    unmaskNeighboors(plate, i - 1, j, maxi, maxj);
                 }
                 if (j - 1 >= 0) {
-                    if (plate[i][j].getNbNeighboors() == 0 && plate[i][j - 1].isMasked() == true) {
-                        unmaskNeighboors(plate, i, j - 1, maxi, maxj);
-                    }
-                }
-                if (i + 1 <= maxi - 1) {
-                    if (plate[i][j].getNbNeighboors() == 0 && plate[i + 1][j].isMasked() == true) {
-                        unmaskNeighboors(plate, i + 1, j, maxi, maxj);
-                    }
-                    if (j - 1 >= 0) {
-                        if (plate[i][j].getNbNeighboors() == 0 && plate[i + 1][j - 1].isMasked() == true) {
-                            unmaskNeighboors(plate, i + 1, j - 1, maxi, maxj);
-                        }
-                    }
-                    if (j + 1 <= maxj - 1) {
-                        if (plate[i][j].getNbNeighboors() == 0 && plate[i + 1][j + 1].isMasked() == true) {
-                            unmaskNeighboors(plate, i + 1, j + 1, maxi, maxj);
-                        }
+                    if (plate[i - 1][j - 1].getContent() != PossibleCell.MINE && plate[i - 1][j - 1].isMasked() == true) {
+                        unmaskNeighboors(plate, i - 1, j - 1, maxi, maxj);
                     }
                 }
                 if (j + 1 <= maxj - 1) {
-                    if (plate[i][j].getNbNeighboors() == 0 && plate[i][j + 1].isMasked() == true) {
+                    if (plate[i - 1][j + 1].getContent() != PossibleCell.MINE && plate[i - 1][j + 1].isMasked() == true) {
+                        unmaskNeighboors(plate, i - 1, j + 1, maxi, maxj);
+                    }
+                }
+                //}
+            }
+            if (i >= 0 && i <= maxi - 1) {
+                if (j - 1 >= 0) {
+                    if (plate[i][j - 1].getContent() != PossibleCell.MINE && plate[i][j - 1].isMasked() == true) {
+                        unmaskNeighboors(plate, i, j - 1, maxi, maxj);
+                    }
+                }
+                if (j + 1 <= maxj - 1) {
+                    if (plate[i][j + 1].getContent() != PossibleCell.MINE && plate[i][j + 1].isMasked() == true) {
                         unmaskNeighboors(plate, i, j + 1, maxi, maxj);
                     }
-
                 }
             }
 
+            if (i + 1 <= maxi - 1) {
+                if (plate[i + 1][j].getContent() != PossibleCell.MINE && plate[i + 1][j].isMasked() == true) {
+                    unmaskNeighboors(plate, i + 1, j, maxi, maxj);
+                }
+                if (j - 1 >= 0) {
+                    if (plate[i + 1][j - 1].getContent() != PossibleCell.MINE && plate[i + 1][j - 1].isMasked() == true) {
+                        unmaskNeighboors(plate, i + 1, j - 1, maxi, maxj);
+                    }
+                }
+                if (j + 1 <= maxj - 1) {
+                    if (plate[i + 1][j + 1].getContent() != PossibleCell.MINE && plate[i + 1][j + 1].isMasked() == true) {
+                        unmaskNeighboors(plate, i + 1, j + 1, maxi, maxj);
+                    }
+                }
+            }
         }
     }
 }

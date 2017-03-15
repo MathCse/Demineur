@@ -47,6 +47,8 @@ public class Cell {
     }
 
     public void setMark(Marks mark) {
-        this.mark = mark;
+        if (this.isMasked()) {
+            this.mark = mark;
+        }
     }
 }
