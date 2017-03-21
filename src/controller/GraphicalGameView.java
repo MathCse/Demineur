@@ -13,7 +13,7 @@ public class GraphicalGameView {
         this.initialisation = new Init();
         this.grid = new GraphicalGridView(initialisation.getLine(), initialisation.getRow(), initialisation.getPercent());
         sc = new Scanner(System.in);
-        //this.grid.print();
+        this.grid.print();
         //this.grid.printDebug();
     }
     

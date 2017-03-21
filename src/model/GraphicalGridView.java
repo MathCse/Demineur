@@ -1,13 +1,19 @@
 package model;
 
+import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JButton;
+
+import java.awt.GridLayout;
 
 
-public class GraphicalGridView extends JPanel {
+public class GraphicalGridView extends JFrame {
     private final GraphicalCellView[][] plate;
     private int percent;
     private final int i;
     private final int j;
+    
+    private JPanel pan = new JPanel();
     
     public GraphicalGridView(int i, int j, int percent) {
         this.i = i;
@@ -15,9 +21,20 @@ public class GraphicalGridView extends JPanel {
         this.plate = new GraphicalCellView[i][j];
         this.percent = percent;
         
+        this.setTitle("Démineur");
+        this.setSize(700, 500);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setLocationRelativeTo(null);
+        
+        
         setPlate(this.plate);
         setMines(this.percent);
         setNeighboors(this.plate);
+        
+        this.setLayout(new GridLayout(this.getI(), this.getJ()));
+        
+        this.setVisible(true);
+
         System.out.println("Nouvelle grille graphique de démineur de " + i + " x " + j + " avec " + percent + "% de mines.");
     }
     
@@ -147,8 +164,15 @@ public class GraphicalGridView extends JPanel {
         }
     }*/
     
-    /*public void print(){
-        for(int x = 0 ; x < this.i ; x++){
+    public void print(){
+       int nbCell = this.getI() * this.getJ();
+       
+       for(int i = 0; i < nbCell; i++) {
+           this.getContentPane().add(new JButton(" "));
+       }
+        
+        
+        /*for(int x = 0 ; x < this.i ; x++){
             for(int y = 0 ; y < this.j ; y++){
                 if(this.plate[x][y].getMark() == Marks.MARKED_MINE){
                     System.out.print("! ");
@@ -186,6 +210,6 @@ public class GraphicalGridView extends JPanel {
                 }
             }
             System.out.println("");
-        }
-    }*/
+        }*/
+    }
 }
