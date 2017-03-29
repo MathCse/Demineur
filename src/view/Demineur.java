@@ -11,9 +11,9 @@ public class Demineur {
         GraphicalGameView newGame = new GraphicalGameView();
 
             
-        /*do{
-            newGame.round();
-        } while (!newGame.isLost() && !newGame.isSuccessful() && !newGame.isQuit());*/
+        do{
+            newGame.GraphicalRoundView();
+        } while (!newGame.isLost() && !newGame.isSuccessful() && !newGame.isQuit());
     }
     
 }
