@@ -1,10 +1,15 @@
 package model;
 
+import java.util.Observable;
+import java.util.Observer;
+import java.util.ArrayList;
+
 /**
  *
  * @author pa
  */
-public class Grid {
+public class Grid implements Observer {
+
     private final Cell[][] plate;
     private int percent;
     private final int i;
@@ -20,11 +25,12 @@ public class Grid {
         setNeighboors(this.plate);
         System.out.println("Nouvelle grille de démineur de " + i + " x " + j + " avec " + percent + "% de mines.");
     }
-    
-    public void setPlate(Cell[][] plate){
-        for(int x = 0 ; x < this.i ; x++){
-            for(int y = 0 ; y < this.j ; y++){
+
+    public void setPlate(Cell[][] plate) {
+        for (int x = 0; x < this.i; x++) {
+            for (int y = 0; y < this.j; y++) {
                 plate[x][y] = new Cell();
+                plate[x][y].addObserver(this);
             }
         }
     }
@@ -36,62 +42,62 @@ public class Grid {
     public int getJ() {
         return j;
     }
-    
-    public void setMines(int percent){
+
+    public void setMines(int percent) {
         int surface = this.i * this.j;
         int nbMines = surface * this.percent / 100;
         int tempx;
         int tempy;
-        for(int it = 0 ; it < nbMines ; it++){
-            do{
-                tempx = 0 + (int)(Math.random() * this.i);
-                tempy = 0 + (int)(Math.random() * this.j);
+        for (int it = 0; it < nbMines; it++) {
+            do {
+                tempx = 0 + (int) (Math.random() * this.i);
+                tempy = 0 + (int) (Math.random() * this.j);
             } while (!this.plate[tempx][tempy].getContent().equals(PossibleCell.EMPTY));
             this.plate[tempx][tempy].setContent(PossibleCell.MINE);
         }
     }
-    
-    public void setNeighboors(Cell[][] plate){
-        for(int x = 0 ; x < this.i ; x++){
-            for(int y = 0 ; y < this.j ; y++){
-                if(x-1 >= 0){
-                    if(plate[x-1][y].getContent().equals(PossibleCell.MINE)){
-                        plate[x][y].setNbNeighboors(plate[x][y].getNbNeighboors()+1);
+
+    public void setNeighboors(Cell[][] plate) {
+        for (int x = 0; x < this.i; x++) {
+            for (int y = 0; y < this.j; y++) {
+                if (x - 1 >= 0) {
+                    if (plate[x - 1][y].getContent().equals(PossibleCell.MINE)) {
+                        plate[x][y].setNbNeighboors(plate[x][y].getNbNeighboors() + 1);
                     }
-                    if(y-1 >= 0){
-                        if(plate[x-1][y-1].getContent().equals(PossibleCell.MINE)){
-                            plate[x][y].setNbNeighboors(plate[x][y].getNbNeighboors()+1);
+                    if (y - 1 >= 0) {
+                        if (plate[x - 1][y - 1].getContent().equals(PossibleCell.MINE)) {
+                            plate[x][y].setNbNeighboors(plate[x][y].getNbNeighboors() + 1);
                         }
                     }
-                    if(y+1 <= this.j-1){
-                        if(plate[x-1][y+1].getContent().equals(PossibleCell.MINE)){
-                            plate[x][y].setNbNeighboors(plate[x][y].getNbNeighboors()+1);
-                        }
-                    }
-                }
-                if(y-1 >= 0){
-                    if(plate[x][y-1].getContent().equals(PossibleCell.MINE)){
-                        plate[x][y].setNbNeighboors(plate[x][y].getNbNeighboors()+1);
-                    }
-                }
-                if(x+1 <= this.i-1){
-                    if(plate[x+1][y].getContent().equals(PossibleCell.MINE)){
-                        plate[x][y].setNbNeighboors(plate[x][y].getNbNeighboors()+1);
-                    }
-                    if(y-1 >= 0){
-                        if(plate[x+1][y-1].getContent().equals(PossibleCell.MINE)){
-                            plate[x][y].setNbNeighboors(plate[x][y].getNbNeighboors()+1);
-                        }
-                    }
-                    if(y+1 <= this.j-1){
-                        if(plate[x+1][y+1].getContent().equals(PossibleCell.MINE)){
-                            plate[x][y].setNbNeighboors(plate[x][y].getNbNeighboors()+1);
+                    if (y + 1 <= this.j - 1) {
+                        if (plate[x - 1][y + 1].getContent().equals(PossibleCell.MINE)) {
+                            plate[x][y].setNbNeighboors(plate[x][y].getNbNeighboors() + 1);
                         }
                     }
                 }
-                if(y+1 <= this.j-1){
-                    if(plate[x][y+1].getContent().equals(PossibleCell.MINE)){
-                        plate[x][y].setNbNeighboors(plate[x][y].getNbNeighboors()+1);
+                if (y - 1 >= 0) {
+                    if (plate[x][y - 1].getContent().equals(PossibleCell.MINE)) {
+                        plate[x][y].setNbNeighboors(plate[x][y].getNbNeighboors() + 1);
+                    }
+                }
+                if (x + 1 <= this.i - 1) {
+                    if (plate[x + 1][y].getContent().equals(PossibleCell.MINE)) {
+                        plate[x][y].setNbNeighboors(plate[x][y].getNbNeighboors() + 1);
+                    }
+                    if (y - 1 >= 0) {
+                        if (plate[x + 1][y - 1].getContent().equals(PossibleCell.MINE)) {
+                            plate[x][y].setNbNeighboors(plate[x][y].getNbNeighboors() + 1);
+                        }
+                    }
+                    if (y + 1 <= this.j - 1) {
+                        if (plate[x + 1][y + 1].getContent().equals(PossibleCell.MINE)) {
+                            plate[x][y].setNbNeighboors(plate[x][y].getNbNeighboors() + 1);
+                        }
+                    }
+                }
+                if (y + 1 <= this.j - 1) {
+                    if (plate[x][y + 1].getContent().equals(PossibleCell.MINE)) {
+                        plate[x][y].setNbNeighboors(plate[x][y].getNbNeighboors() + 1);
                     }
                 }
             }
@@ -105,40 +111,48 @@ public class Grid {
     public Cell[][] getPlate() {
         return plate;
     }
-    
 
     public void setPercent(int percent) {
         this.percent = percent;
     }
-    
+
     public void printDebug() {
-        for(int x = 0 ; x < this.i ; x++){
-            for(int y = 0 ; y < this.j ; y++){
-                if(this.plate[x][y].getContent() == PossibleCell.MINE){
+        for (int x = 0; x < this.i; x++) {
+            for (int y = 0; y < this.j; y++) {
+                if (this.plate[x][y].getContent() == PossibleCell.MINE) {
                     System.out.print("X ");
                 } else {
-                    if(this.plate[x][y].isMasked()){
+                    if (this.plate[x][y].isMasked()) {
                         System.out.print("# ");
                     } else {
-                        switch(this.plate[x][y].getNbNeighboors()){
-                            case 0: System.out.print(". ");
-                                    break;
-                            case 1: System.out.print("1 ");
-                                    break;
-                            case 2: System.out.print("2 ");
-                                    break;
-                            case 3: System.out.print("3 ");
-                                    break;
-                            case 4: System.out.print("4 ");
-                                    break;
-                            case 5: System.out.print("5 ");
-                                    break;
-                            case 6: System.out.print("6 ");
-                                    break;
-                            case 7: System.out.print("7 ");
-                                    break;
-                            case 8: System.out.print("8 ");
-                                    break;
+                        switch (this.plate[x][y].getNbNeighboors()) {
+                            case 0:
+                                System.out.print(". ");
+                                break;
+                            case 1:
+                                System.out.print("1 ");
+                                break;
+                            case 2:
+                                System.out.print("2 ");
+                                break;
+                            case 3:
+                                System.out.print("3 ");
+                                break;
+                            case 4:
+                                System.out.print("4 ");
+                                break;
+                            case 5:
+                                System.out.print("5 ");
+                                break;
+                            case 6:
+                                System.out.print("6 ");
+                                break;
+                            case 7:
+                                System.out.print("7 ");
+                                break;
+                            case 8:
+                                System.out.print("8 ");
+                                break;
                         }
                     }
                 }
@@ -146,40 +160,49 @@ public class Grid {
             System.out.println("");
         }
     }
-    
-    public void print(){
-        for(int x = 0 ; x < this.i ; x++){
-            for(int y = 0 ; y < this.j ; y++){
-                if(this.plate[x][y].getMark() == Marks.MARKED_MINE){
+
+    public void print() {
+        for (int x = 0; x < this.i; x++) {
+            for (int y = 0; y < this.j; y++) {
+                if (this.plate[x][y].getMark() == Marks.MARKED_MINE) {
                     System.out.print("! ");
-                } else if(this.plate[x][y].getMark() == Marks.MARKED_UNKNOWN){
+                } else if (this.plate[x][y].getMark() == Marks.MARKED_UNKNOWN) {
                     System.out.print("? ");
                 } else {
-                    if(this.plate[x][y].isMasked()){
+                    if (this.plate[x][y].isMasked()) {
                         System.out.print("# ");
                     } else {
-                        if(this.plate[x][y].getContent() == PossibleCell.MINE){
+                        if (this.plate[x][y].getContent() == PossibleCell.MINE) {
                             System.out.print("X ");
                         } else {
-                            switch(this.plate[x][y].getNbNeighboors()){
-                                case 0: System.out.print(". ");
-                                        break;
-                                case 1: System.out.print("1 ");
-                                        break;
-                                case 2: System.out.print("2 ");
-                                        break;
-                                case 3: System.out.print("3 ");
-                                        break;
-                                case 4: System.out.print("4 ");
-                                        break;
-                                case 5: System.out.print("5 ");
-                                        break;
-                                case 6: System.out.print("6 ");
-                                        break;
-                                case 7: System.out.print("7 ");
-                                        break;
-                                case 8: System.out.print("8 ");
-                                        break;
+                            switch (this.plate[x][y].getNbNeighboors()) {
+                                case 0:
+                                    System.out.print(". ");
+                                    break;
+                                case 1:
+                                    System.out.print("1 ");
+                                    break;
+                                case 2:
+                                    System.out.print("2 ");
+                                    break;
+                                case 3:
+                                    System.out.print("3 ");
+                                    break;
+                                case 4:
+                                    System.out.print("4 ");
+                                    break;
+                                case 5:
+                                    System.out.print("5 ");
+                                    break;
+                                case 6:
+                                    System.out.print("6 ");
+                                    break;
+                                case 7:
+                                    System.out.print("7 ");
+                                    break;
+                                case 8:
+                                    System.out.print("8 ");
+                                    break;
                             }
                         }
                     }
@@ -188,4 +211,10 @@ public class Grid {
             System.out.println("");
         }
     }
+
+    @Override
+    public void update(Observable o, Object o1) {
+        System.out.println("Update");
+    }
+
 }
