@@ -2,6 +2,9 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+<<<<<<< HEAD
+        <group/>
+=======
         <group>
             <file>file:/home/mathieu/Documents/Travail/CIR3/2016-2017/Info/Java/Demineur/src/model/GraphicalCellView.java</file>
             <file>file:/home/mathieu/Documents/Travail/CIR3/2016-2017/Info/Java/Demineur/src/model/Application.java</file>
@@ -15,5 +18,6 @@
             <file>file:/home/mathieu/Documents/Travail/CIR3/2016-2017/Info/Java/Demineur/src/controller/Commands.java</file>
             <file>file:/home/mathieu/Documents/Travail/CIR3/2016-2017/Info/Java/Demineur/src/view/Demineur.java</file>
         </group>
+>>>>>>> 00abca1a00a68c48b07c0f49b78ed3285ca8e0a3
     </open-files>
 </project-private>

@@ -1,38 +1,29 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller;
 
 import model.*;
 
-/**
- *
- * @author mathieu
- */
-public class Commands {
-
+public class GraphicalCommandsView {
     private char action;
     private int i, j;
     private char argument;
-
-    public Commands() {
+    private int nbMarkedMines;
+    
+    public GraphicalCommandsView() {
 
     }
 
-    public Commands(char action, int i, int j, char argument) {
+    public GraphicalCommandsView(char action, int i, int j, char argument) {
         this.action = action;
         this.i = i;
         this.j = j;
         this.argument = argument;
     }
-
+    
     public char getAction() {
         return action;
     }
-
-    public void DoAction(Game game) {
+    
+    public void DoAction(GraphicalGameView game) {
         try {
             if (i < 0 || j < 0) {
                 throw new Exception("Les coordonnées doivent être positives");
@@ -54,6 +45,7 @@ public class Commands {
                             // On marque la case
                             case 'x':
                                 game.getGrid().getPlate()[i][j].setMark(Marks.MARKED_MINE);
+                                nbMarkedMines++;
                                 break;
 
                             case '?':
@@ -77,7 +69,7 @@ public class Commands {
             System.out.println("Erreur : " + e);
         }
     }
-
+    
     public void setAction(char action) {
         this.action = action;
     }
@@ -101,13 +93,20 @@ public class Commands {
     public char getArgument() {
         return argument;
     }
-
+    
     public void setArgument(char argument) {
         this.argument = argument;
     }
     
+    public int getNbMarkedMines() {
+        return nbMarkedMines;
+    }
 
-    public void unmaskNeighboors(Cell[][] plate, int i, int j, int maxi, int maxj) {
+    public void setNbMarkedMines(int nbMarkedMines) {
+        this.nbMarkedMines = nbMarkedMines;
+    }
+    
+    public void unmaskNeighboors(GraphicalCellView[][] plate, int i, int j, int maxi, int maxj) {
         plate[i][j].setMasked(false);
         if (plate[i][j].getNbNeighboors() == 0) {
             if (i - 1 >= 0) {

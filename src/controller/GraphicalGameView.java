@@ -13,8 +13,8 @@ public class GraphicalGameView {
         this.initialisation = new Init();
         this.grid = new GraphicalGridView(initialisation.getLine(), initialisation.getRow(), initialisation.getPercent());
         sc = new Scanner(System.in);
-        this.grid.print();
-        //this.grid.printDebug();
+        //this.grid.print();
+        this.grid.printDebug();
     }
     
     public boolean isSuccessful(){
@@ -66,6 +66,25 @@ public class GraphicalGameView {
     }
     
     public void GraphicalRoundView() {
+        System.out.println("Enter an action :");
+        String str = sc.nextLine();
+        String[] parts = str.split(" ");
+        char part1 = parts[0].charAt(0);
+        int part2 = 0;
+        int part3 = 0;
+        char part4 = ' ';
+        if (parts.length > 1) {
+            part2 = Integer.parseInt(parts[1]);
+            part3 = Integer.parseInt(parts[2]);
+        }
         
+        if (parts.length > 3) {
+            part4 = parts[3].charAt(0);
+        }
+
+        GraphicalCommandsView command = new GraphicalCommandsView(part1, part3, part2, part4);
+        command.DoAction(this);
+        //grid.print();
+        grid.printDebug();
     }
 }
