@@ -117,11 +117,8 @@ public class GraphicalGridView extends JFrame {
         pan3.add(mineRemaining);
         pan3.add(empty2);
         
-<<<<<<< HEAD
-        System.out.println("Nouvelle grille graphique de démineur de " + this.getI() + " x " + this.getJ() + " avec " + percent + " mines.");
-=======
+
         System.out.println("Nouvelle grille graphique de démineur de " + this.getI() + " x " + this.getJ() + " avec " + nbMines + " mines.");
->>>>>>> b98269252fdc2e617e3c16214b736e6d014f25c6
     }
     
     public void setPlate(GraphicalCellView[][] plate) {
@@ -248,7 +245,7 @@ public class GraphicalGridView extends JFrame {
        int nbCell = this.getI() * this.getJ();
        
        for(int i = 0; i < nbCell; i++) {
-           pan2.add(new JButton(" "));
+           pan2.add(new GraphicalCellView());
        }
        
        this.setContentPane(pan1);
