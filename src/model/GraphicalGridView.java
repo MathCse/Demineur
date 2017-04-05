@@ -29,7 +29,6 @@ public class GraphicalGridView extends JFrame {
     private final JMenuItem newCustom;
     
     private final GraphicalCellView[][] plate;
-    private int percent;
     private final int i;
     private final int j;
     private int remainingMines = 0;
@@ -42,13 +41,12 @@ public class GraphicalGridView extends JFrame {
     
     private JLabel mineRemaining = new JLabel();
     
-    public GraphicalGridView(int i, int j, int percent) {
+    public GraphicalGridView(int i, int j, int mines) {
         this.i = i;
         this.j = j;
         this.plate = new GraphicalCellView[i][j];
-        this.percent = percent;
         int surface = this.i * this.j;
-        int nbMines = surface * this.percent / 100;
+        int nbMines = mines;
         GraphicalCommandsView nbMinesMarked = new GraphicalCommandsView();
         int nb_marked_mines = nbMinesMarked.getNbMarkedMines();
         remainingMines = nbMines - nb_marked_mines;
@@ -99,7 +97,7 @@ public class GraphicalGridView extends JFrame {
         newCustom.setMnemonic('C');
         
         setPlate(this.plate);
-        setMines(this.percent);
+        setMines(nbMines);
         setNeighboors(this.plate);
         
         BorderLayout borderLayout = new BorderLayout(5, 5);
@@ -119,7 +117,7 @@ public class GraphicalGridView extends JFrame {
         pan3.add(mineRemaining);
         pan3.add(empty2);
         
-        System.out.println("Nouvelle grille graphique de démineur de " + this.getI() + " x " + this.getJ() + " avec " + percent + "% de mines.");
+        System.out.println("Nouvelle grille graphique de démineur de " + this.getI() + " x " + this.getJ() + " avec " + nbMines + " mines.");
     }
     
     public void setPlate(GraphicalCellView[][] plate) {
@@ -138,10 +136,10 @@ public class GraphicalGridView extends JFrame {
         return j;
     }
     
-    public void setMines(int percent){
+    public void setMines(int mines){
         this.myFrame = this;
         int surface = this.i * this.j;
-        int nbMines = surface * this.percent / 100;
+        int nbMines = mines;
         int tempx;
         int tempy;
         for(int it = 0 ; it < nbMines ; it++){
@@ -199,18 +197,9 @@ public class GraphicalGridView extends JFrame {
             }
         }
     }
-    
-    public int getPercent() {
-        return percent;
-    }
 
     public GraphicalCellView[][] getPlate() {
         return plate;
-    }
-    
-
-    public void setPercent(int percent) {
-        this.percent = percent;
     }
     
     public void printDebug() {        
