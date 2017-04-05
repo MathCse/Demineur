@@ -4,10 +4,6 @@ import java.util.Observable;
 import java.util.Observer;
 import java.util.ArrayList;
 
-/**
- *
- * @author pa
- */
 public class Grid implements Observer {
 
     private final Cell[][] plate;
