@@ -17,6 +17,7 @@ public class Demineur {
             newGame.GraphicalRoundView();
         } while (!newGame.isLost() && !newGame.isSuccessful() && !newGame.isQuit());
     }
- 
+
+
 
 }

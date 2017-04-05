@@ -1,5 +1,6 @@
 package controller;
 
+import java.text.DecimalFormat;
 import java.util.Scanner;
 import model.*;
 
@@ -18,8 +19,8 @@ public class Game {
         this.initialisation = new Init();
         this.grid = new Grid(initialisation.getLine(), initialisation.getRow(), initialisation.getPercent());
         sc = new Scanner(System.in);
-        //this.grid.print();
-        this.grid.printDebug();
+        this.grid.print();
+        //this.grid.printDebug();
     }
     
     public boolean isSuccessful(){
@@ -71,6 +72,8 @@ public class Game {
     }
     
       public void round() {
+        System.out.println("Temps ecoule = " + String.format("%02d", initialisation.getTimeMinute()) + ":" + String.format("%02d",initialisation.getTimeSecond()));
+        //initialisation.getTimeSecond() );
         System.out.println("Enter an action :");
         String str = sc.nextLine();
         String[] parts = str.split(" ");
