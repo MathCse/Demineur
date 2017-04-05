@@ -68,7 +68,7 @@ public class GraphicalGridView extends JFrame {
     
     public void setPlate(GraphicalCellView[][] plate) {
         for(int x = 0; x < this.i; x++){
-            for( int y = 0; y < this.i; y++){
+            for( int y = 0; y < this.j; y++){
                 plate[x][y] = new GraphicalCellView();
             }
         }
