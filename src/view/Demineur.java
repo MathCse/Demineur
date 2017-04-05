@@ -1,7 +1,7 @@
 package view;
 
 import controller.Game;
-import model.Grid;
+import model.*;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -11,11 +11,13 @@ import controller.GraphicalGameView;
 public class Demineur {
 
     public static void main(String[] args) {
-        GraphicalGameView newGame = new GraphicalGameView();
+        NewGameFrame newGame = new NewGameFrame();
+        
+        //GraphicalGameView newGame = new GraphicalGameView();
             
-        do{
+        /*do{
             newGame.GraphicalRoundView();
-        } while (!newGame.isLost() && !newGame.isSuccessful() && !newGame.isQuit());
+        } while (!newGame.isLost() && !newGame.isSuccessful() && !newGame.isQuit());*/
     }
 
 

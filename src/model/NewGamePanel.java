@@ -1,5 +1,7 @@
 package model;
 
+import controller.GraphicalGameView;
+
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -189,17 +191,13 @@ public class NewGamePanel extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(but1.isSelected()){
-                    System.out.println("Game(9, 9, 10)");
-                    Window fenetre = new Window();
+                    GraphicalGameView window = new GraphicalGameView(9, 9, 10);
                 } else if(but2.isSelected()){
-                    System.out.println("Game(16, 16, 40)");
-                    Window fenetre = new Window();
+                    GraphicalGameView window = new GraphicalGameView(16, 16, 40);
                 } else if(but3.isSelected()){
-                    System.out.println("Game(16, 30, 99)");
-                    Window fenetre = new Window();
+                    GraphicalGameView window = new GraphicalGameView(16, 30, 99);
                 } else if(but4.isSelected()){
-                    System.out.println("Game("+slide1.getValue()+", "+slide2.getValue()+", "+slide3.getValue()+")");
-                    Window fenetre = new Window();
+                    GraphicalGameView window = new GraphicalGameView(slide1.getValue(), slide2.getValue(), slide3.getValue());
                 }
                 myFrame.dispose();
             }

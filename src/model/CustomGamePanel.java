@@ -1,5 +1,6 @@
 package model;
 
+import controller.GraphicalGameView;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -174,7 +175,7 @@ public class CustomGamePanel extends JPanel{
         but.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Game("+slide1.getValue()+", "+slide2.getValue()+", "+slide3.getValue()+")");
+                GraphicalGameView window = new GraphicalGameView(slide1.getValue(), slide2.getValue(), slide3.getValue());
                 myFrame.dispose();
             }
         });
