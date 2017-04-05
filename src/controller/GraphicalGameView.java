@@ -1,26 +1,20 @@
 package controller;
 
-import java.text.DecimalFormat;
 import java.util.Scanner;
 import model.*;
 
-/**
- *
- * @author pa
- */
-
-public class Game {
+public class GraphicalGameView {
     private final Init initialisation;
-    private final Grid grid;
+    private final GraphicalGridView grid;
     private final Scanner sc;
     private boolean quit = false;
     
-    public Game(){
+    public GraphicalGameView() {
         this.initialisation = new Init();
-        this.grid = new Grid(initialisation.getLine(), initialisation.getRow(), initialisation.getPercent());
+        this.grid = new GraphicalGridView(initialisation.getLine(), initialisation.getRow(), initialisation.getPercent());
         sc = new Scanner(System.in);
-        this.grid.print();
-        //this.grid.printDebug();
+        //this.grid.print();
+        this.grid.printDebug();
     }
     
     public boolean isSuccessful(){
@@ -58,7 +52,7 @@ public class Game {
         
         return lost;
     }
-
+    
     public boolean isQuit() {
         return quit;
     }
@@ -67,13 +61,11 @@ public class Game {
         this.quit = quit;
     }
 
-    public Grid getGrid() {
+    public GraphicalGridView getGrid() {
         return grid;
     }
     
-      public void round() {
-        System.out.println("Temps ecoule = " + String.format("%02d", initialisation.getTimeMinute()) + ":" + String.format("%02d",initialisation.getTimeSecond()));
-        //initialisation.getTimeSecond() );
+    public void GraphicalRoundView() {
         System.out.println("Enter an action :");
         String str = sc.nextLine();
         String[] parts = str.split(" ");
@@ -90,9 +82,9 @@ public class Game {
             part4 = parts[3].charAt(0);
         }
 
-        Commands command = new Commands(part1, part3, part2, part4);
+        GraphicalCommandsView command = new GraphicalCommandsView(part1, part3, part2, part4);
         command.DoAction(this);
-        grid.print();
-        //grid.printDebug();
+        //grid.print();
+        grid.printDebug();
     }
 }
