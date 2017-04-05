@@ -63,7 +63,7 @@ public class GraphicalGridView extends JFrame {
         pan3.add(mineRemaining);
         pan3.add(empty2);
         
-        System.out.println("Nouvelle grille graphique de démineur de " + this.getI() + " x " + this.getJ() + " avec " + percent + "% de mines.");
+        System.out.println("Nouvelle grille graphique de démineur de " + this.getI() + " x " + this.getJ() + " avec " + percent + " mines.");
     }
     
     public void setPlate(GraphicalCellView[][] plate) {
