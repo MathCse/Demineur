@@ -4,10 +4,6 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
-/**
- *
- * @author pa
- */
 public class Cell extends Observable {
 
     private boolean masked;

@@ -4,11 +4,6 @@ import java.text.DecimalFormat;
 import java.util.Scanner;
 import model.*;
 
-/**
- *
- * @author pa
- */
-
 public class Game {
     private final Init initialisation;
     private final Grid grid;

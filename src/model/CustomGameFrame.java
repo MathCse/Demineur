@@ -2,10 +2,6 @@ package model;
 
 import javax.swing.JFrame;
 
-/**
- *
- * @author pa
- */
 public class CustomGameFrame extends JFrame{
     public CustomGameFrame() {
         this.setTitle("CustomGameFrame");
