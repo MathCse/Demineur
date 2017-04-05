@@ -4,14 +4,20 @@ import java.util.Scanner;
 import model.*;
 
 public class GraphicalGameView {
-    private final Init initialisation;
+    //private final Init initialisation;
     private final GraphicalGridView grid;
     private final Scanner sc;
     private boolean quit = false;
+    private final int lines;
+    private final int rows;
+    private final int mines;
     
-    public GraphicalGameView() {
-        this.initialisation = new Init();
-        this.grid = new GraphicalGridView(initialisation.getLine(), initialisation.getRow(), initialisation.getPercent());
+    public GraphicalGameView(int newlines, int newrows, int newmines) {
+        //this.initialisation = new Init();
+        this.lines = newlines;
+        this.rows = newrows;
+        this.mines = newmines;
+        this.grid = new GraphicalGridView(this.lines, this.rows, this.mines);
         sc = new Scanner(System.in);
         //this.grid.print();
         this.grid.printDebug();
@@ -20,8 +26,8 @@ public class GraphicalGameView {
     public boolean isSuccessful(){
         boolean successful = true;
         
-        for(int i = 0 ; i < this.initialisation.getLine() ; i++){
-            for(int j = 0 ; j < this.initialisation.getRow() ; j++){
+        for(int i = 0 ; i < this.lines ; i++){
+            for(int j = 0 ; j < this.rows ; j++){
                 if(this.grid.getPlate()[i][j].isMasked() && this.grid.getPlate()[i][j].getContent() == PossibleCell.EMPTY){
                     successful = false;
                 }
@@ -38,8 +44,8 @@ public class GraphicalGameView {
     public boolean isLost(){
         boolean lost  = false;
         
-        for(int i = 0 ; i < this.initialisation.getLine() ; i++){
-            for(int j = 0 ; j < this.initialisation.getRow() ; j++){
+        for(int i = 0 ; i < this.lines ; i++){
+            for(int j = 0 ; j < this.rows ; j++){
                 if(!this.grid.getPlate()[i][j].isMasked() && this.grid.getPlate()[i][j].getContent() == PossibleCell.MINE){
                     lost = true;
                 }
