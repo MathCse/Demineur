@@ -18,7 +18,6 @@ public class CustomGamePanel extends JPanel{
     private int rows;
     private int columns;
     private int mines;
-    private int tempMax;
     private final JPanel pan0 = new JPanel();
     private final JPanel pan1 = new JPanel();
     private final JPanel pan2 = new JPanel();
