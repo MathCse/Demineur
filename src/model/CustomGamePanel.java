@@ -175,7 +175,7 @@ public class CustomGamePanel extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
                 GraphicalGameView window = new GraphicalGameView(slide1.getValue(), slide2.getValue(), slide3.getValue());
-                myFrame.dispose();
+                myFrame.setVisible(false);
             }
         });
         

@@ -19,8 +19,8 @@ public class GraphicalGameView {
         this.mines = newmines;
         this.grid = new GraphicalGridView(this.lines, this.rows, this.mines);
         sc = new Scanner(System.in);
-        //this.grid.print();
-        this.grid.printDebug();
+        this.grid.print();
+        //this.grid.printDebug();
     }
     
     public boolean isSuccessful(){

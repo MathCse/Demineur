@@ -6,7 +6,6 @@ import controller.GraphicalGameView;
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JButton;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JMenuBar;
@@ -18,7 +17,7 @@ import java.awt.GridLayout;
 import javax.swing.JLabel;
 
 public class GraphicalGridView extends JFrame {
-    private JFrame myFrame;
+    private GraphicalGridView myFrame;
     private final JMenuBar menu;
     private final JMenu gameMenu;
     private final JMenu menuNew;
@@ -99,6 +98,7 @@ public class GraphicalGridView extends JFrame {
         setPlate(this.plate);
         setMines(nbMines);
         setNeighboors(this.plate);
+        //printDebug();
         
         BorderLayout borderLayout = new BorderLayout(5, 5);
         GridLayout grid = new GridLayout(this.i, this.j, 3, 3);
@@ -117,13 +117,14 @@ public class GraphicalGridView extends JFrame {
         pan3.add(mineRemaining);
         pan3.add(empty2);
         
+
         System.out.println("Nouvelle grille graphique de démineur de " + this.getI() + " x " + this.getJ() + " avec " + nbMines + " mines.");
     }
     
     public void setPlate(GraphicalCellView[][] plate) {
         for(int x = 0; x < this.i; x++){
             for( int y = 0; y < this.j; y++){
-                plate[x][y] = new GraphicalCellView();
+                plate[x][y] = new GraphicalCellView(this, x, y, this.i, this.j);
             }
         }
     }
@@ -205,34 +206,7 @@ public class GraphicalGridView extends JFrame {
     public void printDebug() {        
         for(int x = 0; x < this.i; x++) {
             for( int y = 0; y < this.j; y++) {
-                if(this.plate[x][y].getContent() == PossibleCell.MINE){
-                    pan2.add(new JButton("X"));
-                } else {
-                    if(this.plate[x][y].isMasked()){
-                        pan2.add(new JButton(" "));
-                    } else {
-                        switch(this.plate[x][y].getNbNeighboors()){
-                            case 0: this.getContentPane().add(new JButton("."));
-                                    break;
-                            case 1: this.getContentPane().add(new JButton("1"));
-                                    break;
-                            case 2: this.getContentPane().add(new JButton("2"));
-                                    break;
-                            case 3: this.getContentPane().add(new JButton("3"));
-                                    break;
-                            case 4: this.getContentPane().add(new JButton("4"));
-                                    break;
-                            case 5: this.getContentPane().add(new JButton("5"));
-                                    break;
-                            case 6: this.getContentPane().add(new JButton("6"));
-                                    break;
-                            case 7: this.getContentPane().add(new JButton("7"));
-                                    break;
-                            case 8: this.getContentPane().add(new JButton("8"));
-                                    break;
-                        }
-                    }
-                }
+                pan2.add(this.plate[x][y]);
             }
         }
         
@@ -241,60 +215,20 @@ public class GraphicalGridView extends JFrame {
     }
     
     public void print(){
-       int nbCell = this.getI() * this.getJ();
-       
-       for(int i = 0; i < nbCell; i++) {
-           pan2.add(new JButton(" "));
-       }
-       
-       this.setContentPane(pan1);
-        this.setVisible(true);
-        
-        /*for(int x = 0 ; x < this.i ; x++){
-            for(int y = 0 ; y < this.j ; y++){
-                if(this.plate[x][y].getMark() == Marks.MARKED_MINE){
-                    System.out.print("! ");
-                } else if(this.plate[x][y].getMark() == Marks.MARKED_UNKNOWN){
-                    System.out.print("? ");
-                } else {
-                    if(this.plate[x][y].isMasked()){
-                        System.out.print("# ");
-                    } else {
-                        if(this.plate[x][y].getContent() == PossibleCell.MINE){
-                            System.out.print("X ");
-                        } else {
-                            switch(this.plate[x][y].getNbNeighboors()){
-                                case 0: System.out.print(". ");
-                                        break;
-                                case 1: System.out.print("1 ");
-                                        break;
-                                case 2: System.out.print("2 ");
-                                        break;
-                                case 3: System.out.print("3 ");
-                                        break;
-                                case 4: System.out.print("4 ");
-                                        break;
-                                case 5: System.out.print("5 ");
-                                        break;
-                                case 6: System.out.print("6 ");
-                                        break;
-                                case 7: System.out.print("7 ");
-                                        break;
-                                case 8: System.out.print("8 ");
-                                        break;
-                            }
-                        }
-                    }
-                }
+        for(int x = 0; x < this.i; x++) {
+            for( int y = 0; y < this.j; y++) {
+                pan2.add(this.plate[x][y]);
             }
-            System.out.println("");
-        }*/
+        }
+        
+        this.setContentPane(pan1);
+        this.setVisible(true);
     }
     
     class ActionBeginner implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent arg0) {
-            myFrame.dispose();
+            myFrame.setVisible(false);
             GraphicalGameView window = new GraphicalGameView(9, 9, 10);
         }
     }
@@ -302,7 +236,7 @@ public class GraphicalGridView extends JFrame {
     class ActionIntermediate implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent arg0) {
-            myFrame.dispose();
+            myFrame.setVisible(false);
             GraphicalGameView window = new GraphicalGameView(16, 16, 40);
         }
     }
@@ -310,7 +244,7 @@ public class GraphicalGridView extends JFrame {
     class ActionExpert implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent arg0) {
-            myFrame.dispose();
+            myFrame.setVisible(false);
             GraphicalGameView window = new GraphicalGameView(16, 30, 99);
         }
     }
@@ -318,7 +252,7 @@ public class GraphicalGridView extends JFrame {
     class ActionCustom implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent arg0) {
-            myFrame.dispose();
+            myFrame.setVisible(false);
             CustomGameFrame custom = new CustomGameFrame();
         }
     }

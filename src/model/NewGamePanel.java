@@ -199,7 +199,7 @@ public class NewGamePanel extends JPanel{
                 } else if(but4.isSelected()){
                     GraphicalGameView window = new GraphicalGameView(slide1.getValue(), slide2.getValue(), slide3.getValue());
                 }
-                myFrame.dispose();
+                myFrame.setVisible(false);
             }
         });
         
