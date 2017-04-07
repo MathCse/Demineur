@@ -11,13 +11,13 @@ import controller.GraphicalGameView;
 public class Demineur {
 
     public static void main(String[] args) {
-        NewGameFrame newGame = new NewGameFrame();
+        NewGameFrame newGameGraphics = new NewGameFrame();
         
-        //GraphicalGameView newGame = new GraphicalGameView();
+        Game newGame = new Game();
             
-        /*do{
-            newGame.GraphicalRoundView();
-        } while (!newGame.isLost() && !newGame.isSuccessful() && !newGame.isQuit());*/
+        do{
+            newGame.round();
+        } while (!newGame.isLost() && !newGame.isSuccessful() && !newGame.isQuit());
     }
 
 

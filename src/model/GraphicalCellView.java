@@ -27,6 +27,7 @@ public class GraphicalCellView extends JButton {
 
         
         this.addMouseListener(new MouseAdapter(){      
+            @Override
             public void mouseClicked(MouseEvent event){
                 if(SwingUtilities.isLeftMouseButton(event)){                
                     revealed(mine, theFrame, i, j, maxi, maxj);
@@ -42,12 +43,14 @@ public class GraphicalCellView extends JButton {
         switch(this.mark){
             case NOT_MARKED:    this.setIcon(flag);
                                 this.setMark(Marks.MARKED_MINE);
+                                theFrame.changeRemainingMines(theFrame.getRemainingMines()-1);
                                 break;
             case MARKED_MINE:   this.setIcon(unknown);
                                 this.setMark(Marks.MARKED_UNKNOWN);
                                 break;
             case MARKED_UNKNOWN:this.setIcon(not);
                                 this.setMark(Marks.NOT_MARKED);
+                                theFrame.changeRemainingMines(theFrame.getRemainingMines()+1);
                                 break;
         }
     }

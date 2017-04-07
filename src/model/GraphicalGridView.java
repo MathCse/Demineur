@@ -35,8 +35,6 @@ public class GraphicalGridView extends JFrame {
     private final JPanel pan1 = new JPanel();
     private final JPanel pan2 = new JPanel();
     private final JPanel pan3 = new JPanel();
-    private final JPanel empty1 = new JPanel();
-    private final JPanel empty2 = new JPanel();
     
     private JLabel mineRemaining = new JLabel();
     
@@ -102,7 +100,7 @@ public class GraphicalGridView extends JFrame {
         
         BorderLayout borderLayout = new BorderLayout(5, 5);
         GridLayout grid = new GridLayout(this.i, this.j, 3, 3);
-        GridLayout text = new GridLayout(1, 3);
+        GridLayout text = new GridLayout(1, 1);
         
         pan2.setLayout(grid);
         pan1.setLayout(borderLayout);
@@ -112,13 +110,37 @@ public class GraphicalGridView extends JFrame {
         pan1.add(pan3, BorderLayout.SOUTH);
 
         mineRemaining = new JLabel("Remaining mines : " + remainingMines);
+        mineRemaining.setHorizontalAlignment(JLabel.CENTER);
         
-        pan3.add(empty1);
         pan3.add(mineRemaining);
-        pan3.add(empty2);
-        
 
         System.out.println("Nouvelle grille graphique de démineur de " + this.getI() + " x " + this.getJ() + " avec " + nbMines + " mines.");
+    }
+    
+    public void changeRemainingMines(int newmines){
+        this.setRemainingMines(newmines);
+        JPanel newpan = new JPanel();
+        mineRemaining = new JLabel("Remaining mines : " + newmines);
+        mineRemaining.setHorizontalAlignment(JLabel.CENTER);
+        newpan.add(mineRemaining);
+        pan1.remove(pan3);
+        pan1.add(newpan, BorderLayout.SOUTH);
+    }
+    
+    public int getRemainingMines() {
+        return remainingMines;
+    }
+
+    public void setRemainingMines(int remainingMines) {
+        this.remainingMines = remainingMines;
+    }
+
+    public JLabel getMineRemaining() {
+        return mineRemaining;
+    }
+
+    public void setMineRemaining(JLabel mineRemaining) {
+        this.mineRemaining = mineRemaining;
     }
     
     public void setPlate(GraphicalCellView[][] plate) {
